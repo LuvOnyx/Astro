@@ -1,0 +1,109 @@
+/* Components/ImagePromptCard.css */
+
+.card-container {
+  /* Basic structure and dark theme */
+  width: 100%; /* Take full width of parent */
+  max-width: 480px; /* Constrain the maximum size */
+  margin: 0 auto; /* Center the card horizontally */
+  background-color: #1e1e1e; /* Dark background color */
+  border-radius: 16px; /* Rounded corners for the whole card */
+  overflow: hidden; /* Clips children to the border-radius */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Prominent shadow */
+  color: #f0f0f0; /* Light text color */
+  font-family: 'Inter', 'Helvetica Neue', sans-serif; 
+}
+
+/* --- Image Styling --- */
+
+.image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* Darker background for potential letterboxing */
+  background-color: #000;
+  max-height: 200px; /* Limit vertical size of the image container */
+}
+
+.card-image {
+  /* Display the image with its natural aspect ratio, but constrained */
+  max-width: 100%;
+  max-height: 100%; /* Fill the constrained wrapper */
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Ensure the whole image is visible */
+  display: block; /* Removes any extra space below the image */
+}
+
+/* --- Content Styling --- */
+
+.content-area {
+  padding: 16px;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: 700; /* Bold */
+}
+
+.description {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #b0b0b0; /* Lighter gray for body text */
+}
+
+/* --- Input Styling --- */
+
+.message-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.message-input {
+  flex-grow: 1; 
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #353535; /* Input background */
+  color: #f0f0f0;
+  font-size: 14px;
+  outline: none; /* Removes default blue focus outline */
+  transition: background-color 0.2s;
+}
+
+.message-input:focus {
+  background-color: #404040; /* Slightly lighter on focus */
+}
+
+.message-input::placeholder {
+  color: #888888;
+}
+
+.send-button {
+  /* Style for the button */
+  flex-shrink: 0;
+  background-color: #353535; 
+  color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  width: 40px; 
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 18px; /* Size of the Unicode icon */
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: #505050; 
+  color: #ffffff;
+}
+
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5; /* Dims the button when disabled */
+}

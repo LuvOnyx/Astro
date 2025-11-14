@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro-Launchr</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/tailwindcss-config">
+    {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@18.2.0/",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.9.0",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0?deps=react@18.2.0",
+    "jszip": "https://esm.sh/jszip@^3.10.1",
+    "file-saver": "https://esm.sh/file-saver@^2.0.5",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@15.5.0?deps=react@18.2.0",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@15.5.0/",
+    "esbuild-wasm": "https://esm.sh/esbuild-wasm@0.23.0",
+    "prettier": "https://esm.sh/prettier@3.3.2/standalone.mjs",
+    "prettier/plugins/babel": "https://esm.sh/prettier@3.3.2/plugins/babel.mjs",
+    "prettier/plugins/estree": "https://esm.sh/prettier@3.3.2/plugins/estree.mjs",
+    "prettier/plugins/html": "https://esm.sh/prettier@3.3.2/plugins/html.mjs",
+    "prettier/plugins/postcss": "https://esm.sh/prettier@3.3.2/plugins/postcss.mjs",
+    "prettier/plugins/markdown": "https://esm.sh/prettier@3.3.2/plugins/markdown.mjs",
+    "lucide-react": "https://esm.sh/lucide-react@0.412.0?deps=react@18.2.0",
+    "framer-motion": "https://esm.sh/framer-motion@11.3.19?deps=react@18.2.0",
+    "prettier/": "https://aistudiocdn.com/prettier@^3.6.2/",
+    "path": "https://aistudiocdn.com/path@^0.12.7",
+    "vite": "https://aistudiocdn.com/vite@^7.1.10",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.0.4"
+  }
+}
+</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #f8fafc; /* light mode fallback */
+      }
+      .dark body {
+        background-color: #020617; /* dark mode fallback */
+        background-image:
+          radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, hsla(355, 98%, 76%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, hsla(256, 96%, 68%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.1) 0px, transparent 50%),
+          radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 0.1) 0px, transparent 50%);
+      }
+      /* Custom scrollbar for chat textarea */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1; /* slate-300 */
+        border-radius: 20px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8; /* slate-400 */
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #475569; /* slate-600 */
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #64748b; /* slate-500 */
+      }
+      /* Firefox */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+      }
+      .dark .custom-scrollbar {
+        scrollbar-color: #475569 transparent;
+      }
+      /* Custom scrollbar for editor tabs */
+      .tab-scrollbar::-webkit-scrollbar {
+        height: 6px;
+      }
+      .tab-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .tab-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #d1d5db; /* gray-300 */
+        border-radius: 10px;
+      }
+      .tab-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #9ca3af; /* gray-400 */
+      }
+      .dark .tab-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #4b5563; /* gray-600 */
+      }
+      .dark .tab-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #6b7280; /* gray-500 */
+      }
+      /* Firefox */
+      .tab-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+      }
+      .dark .tab-scrollbar {
+        scrollbar-color: #4b5563 transparent;
+      }
+    </style>
+    
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-50 dark:bg-transparent font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
